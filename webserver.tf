@@ -16,8 +16,16 @@ resource "oci_core_instance" "webserver" {
     ssh_authorized_keys= "${file("${var.ssh_authorized_keys}")}"
   }
 }
-data "oci_core_vnic_attachments" "vnic-attachment" {
+data "oci_core_vnic_attachments" "vnic-attachment1" {
   compartment_id = var.compartment_id
   availability_domain = var.ads[0]
   instance_id = oci_core_instance.webserver.id
+}
+
+data "oci_core_vnic" "webserver-vnic" {
+  vnic_id = data.oci_core_vnic_attachments.vnic-attachment1.0.vnic_id
+}
+
+output "webserver_publicip" {
+  value = [data.oci_core_vnic.webserver-vnic.public_ip_address]
 }

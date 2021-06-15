@@ -1,5 +1,5 @@
 resource "oci_core_route_table" "routenat" {
-  compartment_id = var.compartment_id.id
+  compartment_id = var.compartment_id
   vcn_id = oci_core_vcn.vnc.id
   display_name = "routenat"
   route_rules {

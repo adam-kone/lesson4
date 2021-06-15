@@ -10,7 +10,7 @@ variable "subnet2-cidr" {
   default = "20.0.2.0/24"
 }
 variable "subnet3-cidr" {
-  default ="20.0.3.4/24"
+  default ="20.0.3.0/24"
 }
 
 variable "vnc-name" {

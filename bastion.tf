@@ -22,3 +22,10 @@ data "oci_core_vnic_attachments" "vnic-attachment" {
   instance_id = oci_core_instance.webserver.id
 }
 
+data "oci_core_vnic" "bastion-vnic" {
+  vnic_id = data.oci_core_vnic_attachments.vnic-attachment.0.vnic_id
+}
+
+output "bastion-publicip" {
+  value = [data.oci_core_vnic.bastion-vnic.public_ip_address]
+}
